@@ -40,13 +40,14 @@ public class EstadoAdapter extends ArrayAdapter<Estado> {
         Estado item = data.get(position);
 
         if (item != null) { // Parse the data from each object and set it.
-            TextView CountryId = (TextView) row.findViewById(R.id.item_id);
-            TextView CountryName = (TextView) row.findViewById(R.id.item_value);
-            if (CountryId != null) {
-                CountryId.setText(item.getId());
+
+            TextView EstadoId = (TextView) row.findViewById(R.id.item_id);
+            TextView EstadoName = (TextView) row.findViewById(R.id.item_value);
+            if (EstadoId != null) {
+                EstadoId.setText(item.getId());
             }
-            if (CountryName != null) {
-                CountryName.setText(item.getName());
+            if (EstadoName != null) {
+                EstadoName.setText(item.getName());
             }
 
         }

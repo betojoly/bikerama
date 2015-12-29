@@ -15,13 +15,14 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+
         new Handler().postDelayed(new Runnable() {
            // Carrega a imagem
 
             @Override
             public void run() {
                 // Este método executa por 5 segundos antes de abrir a MainActivity
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                Intent i = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(i);
                 // Fecha a Activity atual
                 finish();

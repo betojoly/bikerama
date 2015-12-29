@@ -1,3 +1,83 @@
 <resources>
     <string name="app_name">Bikerama</string>
+    <string name="title_activity_login">Login</string>
+
+    <!-- Strings ogin -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha</string>
+    <string name="prompt_bem_vindo">Bem vindo</string>
+    <string name="prompt_faca_cadastro">Novo no Bikerama? Registre-se aqui</string>
+
+    <!-- Strings Registro -->
+    <string name="login_email">Email</string>
+    <string name="login_password">Senha</string>
+    <string name="login_cadastro">Novo no Bikerama? Registre-se aqui</string>
+
+    <string name="action_sign_in">Já possui conta! Faça login aqui</string>
+    <string name="action_register">Registre-se</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="action_name_register">Nome</string>
+    <string name="action_email_register">Email</string>
+    <string name="action_idade_register">Idade</string>
+    <string name="action_sexo_register">Sexo</string>
+    <string name="action_cidade_register">Cidade</string>
+    <string name="action_uf_register">Estado</string>
+    <string name="action_cep_register">CEP</string>
+    <string name="action_senha_register">Senha</string>
+    <string name="action_salvar">Salvar</string>
+    <string name="action_continue_registro">Continue seu Cadastro</string>
+    <string name="conte_mais">Ajude-nos a personalizar sua experiência contando sobre você</string>
+
+    <!-- Strings Registro Bike -->
+    <string name="cadastro_bike">Cadastre sua Bike para começar</string>
+    <string name="action_name_bike">Nome</string>
+    <string name="action_tipo_bike">Tipo</string>
+    <string name="action_fabricante_bike">Fabricante</string>
+    <string name="action_modelo_bike">Modelo</string>
+    <string name="action_serie_bike">Nº de série</string>
+    <string name="action_cor_bike">Cor</string>
+    <string name="action_perfil_bike">Perfil de ciclista</string>
+    <string name="action_data_bike">Data de aquisição</string>
+
+    <!-- Strings Registro Componentes Bike -->
+    <string name="cadastro_componentes_bike">Cadastre os Componentes da sua Bike</string>
+    <string name="cadastro_componentes_bike_linha2">Preencha o máximo de componentes possível.</string>
+    <string name="cadastro_componentes_bike_linha3">*A data de aquisição de cada componente será a mesma data de aquisição da Bike cadastrada.</string>
+    <string name="cadastro_componentes_bike_linha4">**Se desejar cadastrar uma data diferente ou a data atual, procure Editar Componentes no menu, depois de realizar o cadastro.</string>
+    <string name="cadastro_componentes_bike_controle">Controle:</string>
+    <string name="cadastro_componentes_bike_transmissao">Transmissão:</string>
+    <string name="cadastro_componentes_bike_frente">Frente:</string>
+    <string name="cadastro_componentes_bike_traseira">Traseira:</string>
+
+    <string name="bike_minha_bike">Minha Bike</string>
+    <string name="bike_novo_percurso">Novo Percurso</string>
+    <string name="bike_minhas_bikes">Bikes</string>
+    <string name="bike_minha_bike_componentes">Componentes</string>
+    <string name="bike_minha_bike_acessorios">Acessórios</string>
+    <string name="bike_minha_bike_historico">Histórico</string>
+    <string name="bike_minha_bike_relatorios">Relatórios</string>
+    <string name="bike_minha_bike_tutoriais">Tutoriais</string>
+
+    <string name="spinner_prompt">Idade</string>
+    <string name="spinner_estado">Estado</string>
+    <string name="spinner_cidade">Cidade</string>
+
+    <!-- Strings Erros -->
+    <string name="error_invalid_email">Este email é inválido</string>
+    <string name="error_invalid_password">Senha é muito curta</string>
+    <string name="error_incorrect_password">Senha incorreta</string>
+    <string name="error_field_required">Este campo é obrigatório</string>
+
+    <!-- Strings Main -->
+    <string name="welcome">Bem vindo</string>
+    <string name="btn_logout">Logout</string>
+
+
+    <!-- Strings Permissoes -->
+    <string name="permission_rationale">"Permissões de Contatos é necessário para completar o
+        preenchimento do email."
+    </string>
+
+    <!-- Strings Activity -->
+    <string name="title_activity_register">RegisterActivity</string>
 </resources>
