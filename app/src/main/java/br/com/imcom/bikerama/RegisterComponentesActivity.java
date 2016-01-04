@@ -230,7 +230,7 @@ public class RegisterComponentesActivity extends AppCompatActivity {
                         // Verificar se passou dados da Bike cadastrada, se sim, gravar do SQLite
                         if(pid != null){
                             // Inserting row in users table
-                            //db.addBike(bike, pid);
+                            db.addBike(bike, pid);
                         }
 
                         // Launch Cadastro Bike Activity

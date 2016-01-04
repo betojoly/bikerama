@@ -218,14 +218,20 @@ public class MainActivity extends AppCompatActivity {
 
                     // json success tag
                     success = json.getInt(TAG_SUCCESS);
+                    String bike_id = json.getString("bike_id");
+                    String bike = json.getString("bike");
 
                     if (success == 1) {
                         // successfully received Data Cadastro
-                        // Iniciar Activity Inicial
                         //Toast.makeText(getApplicationContext(), "Cadastro OK!", Toast.LENGTH_LONG).show();
 
-                        // Envia para Tela Inicial
-                        // Launch Cadastro Bike Activity
+                        // Verificar se passou dados da Bike cadastrada, se sim, gravar do SQLite
+                        if(bike_id != null){
+                            // Inserting row in users table
+                            db.addBike(bike, bike_id);
+                        }
+
+                        // Iniciar Activity Tela Inicial
                         Intent intent = new Intent(
                                 MainActivity.this,
                                 InicialActivity.class);

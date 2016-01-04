@@ -49,7 +49,7 @@
     <string name="cadastro_componentes_bike_frente">Frente:</string>
     <string name="cadastro_componentes_bike_traseira">Traseira:</string>
 
-    <string name="bike_minha_bike">Minha Bike</string>
+    <string name="bike_minha_bike">Bike Selecionada</string>
     <string name="bike_novo_percurso">Novo Percurso</string>
     <string name="bike_minhas_bikes">Bikes</string>
     <string name="bike_minha_bike_componentes">Componentes</string>

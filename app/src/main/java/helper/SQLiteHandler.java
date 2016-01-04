@@ -137,6 +137,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * Storing Bike details in database
      * */
     public void addBike(String name, String uid) {
+        onUpgrade(this.getWritableDatabase(), 1, 2);
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
