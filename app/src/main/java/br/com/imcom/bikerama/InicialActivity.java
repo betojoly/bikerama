@@ -22,6 +22,7 @@ public class InicialActivity extends AppCompatActivity {
     private TextView txtBike;
     private Button btnLogout;
     private Button btnNewPercurso;
+    private Button btnHistorico;
 
     private String pid;
 
@@ -36,6 +37,7 @@ public class InicialActivity extends AppCompatActivity {
         txtBike = (TextView) findViewById(R.id.textBike);
         btnLogout = (Button) findViewById(R.id.btnLogout);
         btnNewPercurso = (Button) findViewById(R.id.btnNovoPercurso);
+        btnHistorico = (Button) findViewById(R.id.btnHistorico);
 
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
@@ -47,7 +49,7 @@ public class InicialActivity extends AppCompatActivity {
             logoutUser();
         }
 
-        // Fetching user details from sqlite
+        // Fetching bikedetails from sqlite
         HashMap<String, String> bike = db.getBikeDetails();
 
         String bike_name = bike.get("name");
@@ -71,6 +73,15 @@ public class InicialActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 gravarPercurso();
+            }
+        });
+
+        // Botão Carregar Histórico
+        btnHistorico.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                carregaHistorico();
             }
         });
 
@@ -99,6 +110,17 @@ public class InicialActivity extends AppCompatActivity {
 
         // Launching the RegistroPercurso activity
         Intent intent = new Intent(InicialActivity.this, RegistroPercursoActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    /**
+     * Carrega o Historico de Atividades
+     * */
+    private void carregaHistorico() {
+
+        // Launching the RegistroPercurso activity
+        Intent intent = new Intent(InicialActivity.this, HistoricoPercursosActivity.class);
         startActivity(intent);
         finish();
     }

@@ -1,12 +1,28 @@
 <resources>
     <string name="app_name">Bikerama</string>
+
+    <!-- Strings Main -->
+    <string name="welcome">Bem vindo</string>
+    <string name="btn_logout">Logout</string>
+
+
+    <!-- Strings Permissoes -->
+    <string name="permission_rationale">"Permissões de Contatos é necessário para completar o
+        preenchimento do email."
+    </string>
+
+
+    <!-- Strings Activity -->
+    <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_login">Login</string>
 
-    <!-- Strings ogin -->
+
+    <!-- Strings Login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Senha</string>
     <string name="prompt_bem_vindo">Bem vindo</string>
     <string name="prompt_faca_cadastro">Novo no Bikerama? Registre-se aqui</string>
+
 
     <!-- Strings Registro -->
     <string name="login_email">Email</string>
@@ -28,6 +44,11 @@
     <string name="action_continue_registro">Continue seu Cadastro</string>
     <string name="conte_mais">Ajude-nos a personalizar sua experiência contando sobre você</string>
 
+    <string name="spinner_prompt">Idade</string>
+    <string name="spinner_estado">Estado</string>
+    <string name="spinner_cidade">Cidade</string>
+
+
     <!-- Strings Registro Bike -->
     <string name="cadastro_bike">Cadastre sua Bike para começar</string>
     <string name="action_name_bike">Nome</string>
@@ -39,6 +60,7 @@
     <string name="action_perfil_bike">Perfil de ciclista</string>
     <string name="action_data_bike">Data de aquisição</string>
 
+
     <!-- Strings Registro Componentes Bike -->
     <string name="cadastro_componentes_bike">Cadastre os Componentes da sua Bike</string>
     <string name="cadastro_componentes_bike_linha2">Preencha o máximo de componentes possível.</string>
@@ -49,6 +71,8 @@
     <string name="cadastro_componentes_bike_frente">Frente:</string>
     <string name="cadastro_componentes_bike_traseira">Traseira:</string>
 
+
+    <!-- Strings TEla Inicial -->
     <string name="bike_minha_bike">Bike Selecionada</string>
     <string name="bike_novo_percurso">Novo Percurso</string>
     <string name="bike_minhas_bikes">Bikes</string>
@@ -58,9 +82,34 @@
     <string name="bike_minha_bike_relatorios">Relatórios</string>
     <string name="bike_minha_bike_tutoriais">Tutoriais</string>
 
-    <string name="spinner_prompt">Idade</string>
-    <string name="spinner_estado">Estado</string>
-    <string name="spinner_cidade">Cidade</string>
+
+    <!-- Strings Percurso -->
+    <string name="percurso_iniciar">Iniciar</string>
+    <string name="percurso_iniciar_novo">Iniciar Novo Percurso</string>
+    <string name="percurso_parar">Parar</string>
+    <string name="percurso_gravando">Gravando...</string>
+    <string name="percurso_pausado">Pausado...</string>
+    <string name="percurso_localizacao">Localização</string>
+    <string name="percurso_tempo_transcorrido">Tempo Transcorrido</string>
+    <string name="percurso_salvar">Salvar Percurso</string>
+    <string name="percurso_salvos">Percursos Salvos</string>
+    <string name="percurso_historico">Histórico Percurso</string>
+    <string name="percurso_nome">Nome do Percurso</string>
+    <string name="percurso_tipo">Tipo Atividade</string>
+    <string name="percurso_descricao">Descrição do Percurso</string>
+    <string name="percurso_detalhes">Detalhes Percurso</string>
+    <string name="percurso_nivel">Nível de Atividade</string>
+    <string name="percurso_nivel_leve">Leve</string>
+    <string name="percurso_nivel_moderado">Moderado</string>
+    <string name="percurso_nivel_pesado">Pesado</string>
+    <string name="percurso_data">Data</string>
+
+    <string name="btn_percurso_concluir">Concluir e Salvar Percurso</string>
+    <string name="btn_start_location_updates">Continuar gravando Percurso</string>
+    <string name="btn_stop_location_updates">Pausar Percurso</string>
+    <string name="btn_salvar_percurso">Salvar</string>
+    <string name="btn_cancelar_percurso">Cancelar</string>
+
 
     <!-- Strings Erros -->
     <string name="error_invalid_email">Este email é inválido</string>
@@ -68,16 +117,5 @@
     <string name="error_incorrect_password">Senha incorreta</string>
     <string name="error_field_required">Este campo é obrigatório</string>
 
-    <!-- Strings Main -->
-    <string name="welcome">Bem vindo</string>
-    <string name="btn_logout">Logout</string>
 
-
-    <!-- Strings Permissoes -->
-    <string name="permission_rationale">"Permissões de Contatos é necessário para completar o
-        preenchimento do email."
-    </string>
-
-    <!-- Strings Activity -->
-    <string name="title_activity_register">RegisterActivity</string>
 </resources>

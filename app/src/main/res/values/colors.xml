@@ -5,8 +5,11 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="black_overlay2">#96000000</color>
+    <color name="green_overlay">#cadde7</color>
     <color name="textos_login">#d90036</color>
     <color name="btn_logut_bg">#FFD90036</color>
     <color name="name_verde">#a8cf34</color>
     <color name="white">#FFFFFF</color>
+    <color name="azul_escuro">#2c619d</color>
 </resources>

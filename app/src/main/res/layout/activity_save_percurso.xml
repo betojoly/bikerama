@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_bg">
+
+            <!--  Header  Starts-->
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/header_gradient"
+                android:paddingTop="5dip"
+                android:paddingBottom="5dip">
+                <!-- Logo Start-->
+                <ImageView android:src="@drawable/bikerama_ldpi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="20dip"/>
+                <!-- Logo Ends -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginLeft="20dip"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/percurso_salvar"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+            </LinearLayout>
+            <!--  Header Ends -->
+
+            <!-- Footer Start -->
+            <LinearLayout
+                android:id="@+id/footer"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="203dip"
+                android:background="@drawable/footer_repeat"
+                android:layout_alignParentBottom="true">
+            </LinearLayout>
+            <!-- Footer Ends -->
+
+            <!-- Registration Form -->
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dip"
+                android:layout_below="@id/header">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginBottom="-7dp"
+                    android:text="@string/percurso_nome"
+                    android:textSize="16dp" />
+
+                <!-- Nome -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/inputNome"
+                        android:layout_width="fill_parent"
+                        android:layout_height="70px"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:background="#ffffff"
+                        android:singleLine="true"
+                        android:maxLength="50"
+                        android:layout_below="@+id/inputNome"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Tipo Atividade -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:layout_marginBottom="-7dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/percurso_tipo"
+                        android:textSize="16dp" />
+
+                    <Spinner
+                        android:id="@+id/spinnerTipoAtividade"
+                        android:layout_width="fill_parent"
+                        android:layout_marginTop="10dip"
+                        android:layout_height="70px"
+                        android:gravity="center"
+                        android:background="#ffffff"
+                        android:prompt="@string/percurso_tipo" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Nivel Atividade -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:layout_marginBottom="-2dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/percurso_nivel"
+                        android:textSize="16dp" />
+
+                    <RadioGroup
+                        android:id="@+id/radioNivel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <RadioButton
+                            android:id="@+id/radioLeve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/percurso_nivel_leve"
+                            android:checked="true" />
+
+                        <RadioButton
+                            android:id="@+id/radioModerado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/percurso_nivel_moderado" />
+
+                        <RadioButton
+                            android:id="@+id/radioPesado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/percurso_nivel_pesado" />
+                    </RadioGroup>
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginTop="10dip"
+                    android:layout_marginBottom="-7dp"
+                    android:text="@string/percurso_descricao"
+                    android:textSize="16dp" />
+
+                <!-- Descricao -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/inputDescricao"
+                        android:layout_width="fill_parent"
+                        android:layout_marginTop="10dip"
+                        android:layout_height="70px"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:background="#ffffff"
+                        android:singleLine="false"
+                        android:maxLength="500"
+                        android:layout_below="@+id/inputDescricao"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Save Button -->
+                <Button android:id="@+id/btnSubmit"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dip"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:background="@drawable/button_blue"
+                    android:text="@string/action_salvar"
+                    android:textStyle="bold" />
+
+                <!-- Cancel Button -->
+                <Button android:id="@+id/btnCancelar"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="2dip"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:background="@drawable/button_logout"
+                    android:text="@string/btn_cancelar_percurso"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+            <!-- Registration Form Ends -->
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

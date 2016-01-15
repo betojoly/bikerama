@@ -56,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
+        // DROP tables
+        /////////////////////////////////////////////////////////////////////////////
+        ////db.dropPercursoFinal(); // ***USAR SOMENTE DURANTE HOMOLOGAÇAO - DEPOIS REMOVER
+        //db.dropPercurso(); // ***USAR SOMENTE DURANTE HOMOLOGAÇAO - DEPOIS REMOVER
+        /////////////////////////////////////////////////////////////////////////////
+
         // session manager
         session = new SessionManager(getApplicationContext());
 
@@ -137,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
                         //Toast.makeText(getApplicationContext(), "Cadastro OK!", Toast.LENGTH_LONG).show();
 
                         // Verifica se tem Bike Cadastrada
-                        new VerificaBike().execute();
+                        //new VerificaBike().execute();
+                        VerificaBikeSQLite();
 
                     } else if (success == 0) {
                         // Permanecer nesta Tela
@@ -168,6 +175,29 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    // Verifica Bike no SQLite
+    private void VerificaBikeSQLite() {
+
+        // Fetching bike details from sqlite
+        HashMap<String, String> bike = db.getBikeDetails();
+
+        String bike_name = bike.get("name");
+        String bike_id = bike.get("uid");
+
+        if (bike_id != null) {
+            // Iniciar Activity Tela Inicial
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    InicialActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            // Verifica se tem Bike Cadastrada, se não tiver verifica e cadastra
+            new VerificaBike().execute();
+        }
+
     }
 
     // Verifica se Usuario cadastrou Bike
@@ -243,7 +273,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Cadastre sua Bike!", Toast.LENGTH_LONG).show();
 
                         // Envia para Tela Inicial
-                        // Launch Cadastro Bike Activity
                         Intent intent = new Intent(
                                 MainActivity.this,
                                 RegisterBikeActivity.class);

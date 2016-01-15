@@ -17,6 +17,9 @@ public class AppConfig {
     // Server Consulta Bike url
     public static String URL_CONSULTA_BIKE = "http://app.bikerama.com.br/API/consulta_bike.php";
 
+    // Server Exporta Dados Percurso
+    public static String URL_EXPORTA_PERCURSO = "http://app.bikerama.com.br/API/register_percurso.php";
+
     // Cadastro de Usuario parte 2
     public static String MAP_API_URL_ESTADO = "http://app.bikerama.com.br/API/get_estados.php";
     public static String MAP_API_URL_CIDADE = "http://app.bikerama.com.br/API/get_cidades.php";
