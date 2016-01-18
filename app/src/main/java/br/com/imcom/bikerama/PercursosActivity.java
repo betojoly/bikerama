@@ -40,6 +40,7 @@ public class PercursosActivity extends AppCompatActivity {
 
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PERCURSOS = "percursos";
+    private static final String TAG_DADOS_PERCURSOS = "dadospercursos";
     private static final String TAG_BIKE = "bike";
     private static final String TAG_BIKEID = "bikeid";
     private static final String TAG_PERCURSO_ID = "percursoid";
@@ -53,6 +54,12 @@ public class PercursosActivity extends AppCompatActivity {
     private static final String KEY_PERCURSO_NIVEL = "nivel";
     private static final String KEY_PERCURSO_DESCRICAO = "descricao";
     private static final String KEY_PERCURSO_STATUS = "status";
+    // Dados Percurso Table Columns names
+    private static final String KEY_DADOS_PERCURSO_ID = "id";
+    private static final String KEY_DADOS_PERCURSO_UID = "uid";
+    private static final String KEY_DADOS_PERCURSO_LATLONG = "latlong";
+    private static final String KEY_DADOS_PERCURSO_DATA = "date";
+    private static final String KEY_DADOS_PERCURSO_STATUS = "updatestatus";
 
     private TextView txtBike;
     private Button btnLogout;
@@ -68,6 +75,7 @@ public class PercursosActivity extends AppCompatActivity {
 
     // locais JSONArray
     JSONArray percursos = null;
+    JSONArray dadospercursos = null;
 
     private SQLiteHandler db;
     private SessionManager session;
@@ -171,7 +179,7 @@ public class PercursosActivity extends AppCompatActivity {
 
 
     /**
-     * Background Async Task to Create new Local
+     * Background Async Task to Transfer Percursos
      * */
     public class syncSQLiteMySQLDB extends AsyncTask<String, String, String> {
         /**
@@ -252,27 +260,10 @@ public class PercursosActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Sincronização completa!", Toast.LENGTH_LONG).show();
         }
     }
-
     /**
-     * Background Async Task to Create new Local
+     * *********************************************************************************************
      * */
 
-
-
-    /**
-     * Logging out the user. Will set isLoggedIn flag to false in shared
-     * preferences Clears the user data from sqlite users table
-     */
-    private void logoutUser() {
-        session.setLogin(false);
-
-        db.deleteUsers();
-
-        // Launching the login activity
-        Intent intent = new Intent(PercursosActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
     /**
      * Show All Percursos from SQLite
@@ -387,5 +378,20 @@ public class PercursosActivity extends AppCompatActivity {
         AlertDialog.Builder informa = new AlertDialog.Builder(PercursosActivity.this);
         informa.setTitle("Sem conexão com a internet.");
         informa.setNeutralButton("Voltar", null).show();
+    }
+
+    /**
+     * Logging out the user. Will set isLoggedIn flag to false in shared
+     * preferences Clears the user data from sqlite users table
+     */
+    private void logoutUser() {
+        session.setLogin(false);
+
+        db.deleteUsers();
+
+        // Launching the login activity
+        Intent intent = new Intent(PercursosActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

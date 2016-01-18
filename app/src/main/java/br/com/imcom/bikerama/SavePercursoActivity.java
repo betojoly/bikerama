@@ -1,7 +1,10 @@
 package br.com.imcom.bikerama;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +18,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import helper.SQLiteHandler;
 import helper.SessionManager;
@@ -35,6 +44,13 @@ public class SavePercursoActivity extends AppCompatActivity {
     private static final String TAG_PERCURSO_ID  = "percursoid";
     private static final String TAG_PERCURSO_DATA  = "date";
     private static final String TAG_TIPOS   = "tipos";
+    // Dados Percurso Table Columns names
+    private static final String KEY_DADOS_PERCURSO_ID = "id";
+    private static final String KEY_DADOS_PERCURSO_UID = "uid";
+    private static final String KEY_DADOS_PERCURSO_LATLONG = "latlong";
+    private static final String KEY_DADOS_PERCURSO_DATA = "date";
+    private static final String KEY_DADOS_PERCURSO_STATUS = "status";
+    private static final String TAG_DADOS_PERCURSOS = "dadospercursos";
 
     private TextView txtBike;
     private Button btnCancelPercurso;
@@ -48,6 +64,18 @@ public class SavePercursoActivity extends AppCompatActivity {
     private SQLiteHandler db;
     private SessionManager session;
 
+    // Progress Dialog
+    private ProgressDialog pDialog;
+
+    // Creating JSON Parser object
+    JSONParserNova jsonParser = new JSONParserNova();
+
+    // locais JSONArray
+    JSONArray dadospercursos = null;
+
+    // Detecta Conexao com internet
+    private DetectaConexao detectaConexao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +83,50 @@ public class SavePercursoActivity extends AppCompatActivity {
 
         SavePercursoActivity.this.setTitle(TITLE);
 
+        // Detecta conexao instancia
+        detectaConexao = new DetectaConexao(getApplicationContext());
+
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
+
+        // session manager
+        session = new SessionManager(getApplicationContext());
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+
+        //........................................................................................//
+        //executa acao de exportar Dados de Percurso
+        // Verifica se tem Conexao com a internet
+        if (detectaConexao.existeConexao()) {
+
+            //Display Sync status of SQLite DB Dados Percurso
+            Toast.makeText(SavePercursoActivity.this,
+                    db.getSyncStatusDadosPercurso(),
+                    Toast.LENGTH_LONG).show();
+
+            //Sync SQLite DB data to remote MySQL DB - // Get Percursos
+            ArrayList<HashMap<String, String>> userListDados =  db.getallPercursosDBDadosPercurso();
+            if(userListDados.size()!=0){
+                if(db.dbSyncCountDadosPercurso() != 0){
+                    String paramsDados = db.composeJSONfromSQLiteDadosPercurso();
+                    //Log.d("Create Response GSON", paramsDados);
+                    new syncSQLiteMySQLDBDadosPercurso().execute(paramsDados);
+                }else{
+                    //Toast.makeText(getApplicationContext(), "SQLite and Remote MySQL DBs are in Sync!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Dados sendo sincronizados!", Toast.LENGTH_LONG).show();
+                }
+            }else{
+                //Toast.makeText(getApplicationContext(), "No data in SQLite DB, please do enter User name to perform Sync action", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Nenhum dado sincronizado", Toast.LENGTH_LONG).show();
+            }
+
+        } else {
+            mostraAlerta();
+        }
+
+        //........................................................................................//
 
         // Adiciona os botoes radio
         radioGroupNivel = (RadioGroup) findViewById(R.id.radioNivel);
@@ -191,9 +261,118 @@ public class SavePercursoActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Background Async Task to Transfer Percursos
+     * */
+    public class syncSQLiteMySQLDBDadosPercurso extends AsyncTask<String, String, String> {
+        /**
+         * Before starting background thread Show Progress Dialog
+         * */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(SavePercursoActivity.this);
+            pDialog.setMessage("Transferindo dados para servidor remoto. Por favor aguarde...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        /**
+         * Creating Local
+         * */
+        protected String doInBackground(String... args){
+            String dadosGsonD = args[0];
+
+            // Building Parameters
+            Map<String, String> paramsDados = new HashMap<>();
+            paramsDados.put("dados_JSON", dadosGsonD);
+
+            // Check for success tag
+            int success = 0; //initialize to zero
+
+            // getting JSON Object
+            // Note that create local url accepts POST method
+            JSONObject jsonDados = jsonParser.makeHttpRequest(AppConfig.URL_EXPORTA_DADOS_PERCURSO, "POST", (HashMap<String, String>) paramsDados);
+
+            // check log cat for response
+            //added null check:
+            if (jsonDados != null) {
+                //Log.d("Create Response", json.toString());
+
+                // check for success tag
+                try {
+                    // Getting Array of Products
+                    dadospercursos = jsonDados.getJSONArray(TAG_DADOS_PERCURSOS);
+
+                    // looping through All Products
+                    for (int i = 0; i < dadospercursos.length(); i++) {
+                        JSONObject c = dadospercursos.getJSONObject(i);
+
+                        // Checking for SUCCESS TAG
+                        success = c.getInt(TAG_SUCCESS);
+
+                        if(success == 1){
+                            // successfully
+                            Log.d("Sucesso ", "OK");
+                            db.updateSyncStatusDadosPercurso(c.getString(KEY_DADOS_PERCURSO_ID), c.getString(KEY_DADOS_PERCURSO_STATUS));
+
+                        } else {
+                            // failed
+                            Log.d("Falha ", "ERRO");
+                            db.updateSyncStatusDadosPercurso(c.getString(KEY_DADOS_PERCURSO_ID), c.getString(KEY_DADOS_PERCURSO_STATUS));
+                        }
+                    }
+
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+            return null;
+
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         * **/
+        @Override
+        protected void onPostExecute(String file_url) {
+            super.onPostExecute(file_url);
+            // dismiss the dialog once done
+            pDialog.dismiss();
+            Toast.makeText(getApplicationContext(), "Sincronização completa!", Toast.LENGTH_LONG).show();
+        }
+    }
+    /**
+     * *********************************************************************************************
+     * */
+
+
     // Add spinner data
     public void addListenerOnSpinnerItemSelection(){
 
         tipoAtividadeField.setOnItemSelectedListener(new TipoAtividade());
+    }
+
+    // Mostra a informação caso não tenha internet.
+    private void mostraAlerta() {
+        AlertDialog.Builder informa = new AlertDialog.Builder(SavePercursoActivity.this);
+        informa.setTitle("Sem conexão com a internet.");
+        informa.setNeutralButton("Voltar", null).show();
+    }
+
+    /**
+     * Logging out the user. Will set isLoggedIn flag to false in shared
+     * preferences Clears the user data from sqlite users table
+     */
+    private void logoutUser() {
+        session.setLogin(false);
+
+        db.deleteUsers();
+
+        // Launching the login activity
+        Intent intent = new Intent(SavePercursoActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

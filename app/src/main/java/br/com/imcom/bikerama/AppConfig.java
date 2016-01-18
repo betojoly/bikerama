@@ -19,6 +19,7 @@ public class AppConfig {
 
     // Server Exporta Dados Percurso
     public static String URL_EXPORTA_PERCURSO = "http://app.bikerama.com.br/API/register_percurso.php";
+    public static String URL_EXPORTA_DADOS_PERCURSO = "http://app.bikerama.com.br/API/register_dados_percurso.php";
 
     // Cadastro de Usuario parte 2
     public static String MAP_API_URL_ESTADO = "http://app.bikerama.com.br/API/get_estados.php";

@@ -66,6 +66,7 @@
         <activity android:name=".PercursosActivity" />
         <activity android:name=".HistoricoPercursosActivity" />
         <activity android:name=".DetalhesPercursoActivity" />
+        <activity android:name=".ViewComponentesActivity"></activity>
     </application>
 
 </manifest>

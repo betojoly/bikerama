@@ -63,8 +63,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_PERCURSO_DESCRICAO = "descricao";
     private static final String KEY_PERCURSO_STATUS = "updatestatus";
     // Dados Percurso Table Columns names
-    private static final String KEY_DADOS_PERCURSO_UID = "uid";
     private static final String KEY_DADOS_PERCURSO_ID = "id";
+    private static final String KEY_DADOS_PERCURSO_UID = "uid";
     private static final String KEY_DADOS_PERCURSO_LATLONG = "latlong";
     private static final String KEY_DADOS_PERCURSO_DATA = "date";
     private static final String KEY_DADOS_PERCURSO_STATUS = "updatestatus";
@@ -465,7 +465,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * *********************************************************************************************
-     * SINCRONIZACAO SQLITE COM MYSQL - BEGIN
+     * SINCRONIZACAO SQLITE COM MYSQL - PERCURSOS - BEGIN
      * *********************************************************************************************
      */
     /**
@@ -568,13 +568,119 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
     /**
      * *********************************************************************************************
-     * // SINCRONIZACAO SQLITE COM MYSQL - END
+     * // SINCRONIZACAO SQLITE COM MYSQL - PERCURSOS - END
+     * *********************************************************************************************
+     */
+
+
+    /**
+     * *********************************************************************************************
+     * SINCRONIZACAO SQLITE COM MYSQL - DADOS PERCURSOS - BEGIN
+     * *********************************************************************************************
+     *
+     */
+    /**
+     * Get list of Users from SQLite DB as Array List
+     * @return
+     */
+    public ArrayList<HashMap<String, String>> getallPercursosDBDadosPercurso() {
+        ArrayList<HashMap<String, String>> wordList;
+        wordList = new ArrayList<HashMap<String, String>>();
+        String selectQuery = "SELECT * FROM  " + TABLE_DADOS_PERCURSO;
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put(KEY_DADOS_PERCURSO_ID, cursor.getString(0));
+                map.put(KEY_DADOS_PERCURSO_UID, cursor.getString(1));
+                map.put(KEY_DADOS_PERCURSO_LATLONG, cursor.getString(2));
+                map.put(KEY_DADOS_PERCURSO_DATA, cursor.getString(3));
+                wordList.add(map);
+            } while (cursor.moveToNext());
+        }
+        database.close();
+        return wordList;
+    }
+
+    /**
+     * Compose JSON out of SQLite records
+     * @return
+     */
+    public String composeJSONfromSQLiteDadosPercurso(){
+        ArrayList<HashMap<String, String>> wordList;
+        wordList = new ArrayList<HashMap<String, String>>();
+        String selectQuery = "SELECT  * FROM " + TABLE_DADOS_PERCURSO + " WHERE " + KEY_DADOS_PERCURSO_STATUS + " = '"+"no"+"'";
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put(KEY_DADOS_PERCURSO_ID, cursor.getString(0));
+                map.put(KEY_DADOS_PERCURSO_UID, cursor.getString(1));
+                map.put(KEY_DADOS_PERCURSO_LATLONG, cursor.getString(2));
+                map.put(KEY_DADOS_PERCURSO_DATA, cursor.getString(3));
+                wordList.add(map);
+            } while (cursor.moveToNext());
+        }
+        database.close();
+        Gson gson = new GsonBuilder().create();
+        //Use GSON to serialize Array List to JSON
+        return gson.toJson(wordList);
+    }
+
+    /**
+     * Get Sync status of SQLite
+     * @return
+     */
+    public String getSyncStatusDadosPercurso(){
+        String msg = null;
+        if(this.dbSyncCountDadosPercurso() == 0){
+            //msg = "SQLite and Remote MySQL DBs are in Sync!";
+            msg = "Dados sendo sincronizados!";
+        }else{
+            //msg = "DB Sync needed";
+            msg = "Necessário sincronizar dados";
+        }
+        return msg;
+    }
+
+    /**
+     * Get SQLite records that are yet to be Synced
+     * @return
+     */
+    public int dbSyncCountDadosPercurso(){
+        int count = 0;
+        String selectQuery = "SELECT  * FROM " + TABLE_DADOS_PERCURSO + " WHERE " + KEY_DADOS_PERCURSO_STATUS + " = '"+"no"+"'";
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        count = cursor.getCount();
+        database.close();
+        return count;
+    }
+
+    /**
+     * Update Sync status against each User ID
+     * @param id
+     * @param status
+     */
+    public void updateSyncStatusDadosPercurso(String id, String status){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String updateQuery = "UPDATE " + TABLE_DADOS_PERCURSO + " SET " + KEY_DADOS_PERCURSO_STATUS + " = '"+ status +"' WHERE " + KEY_DADOS_PERCURSO_ID + " ="+"'"+ id +"'";
+        Log.d("query",updateQuery);
+        database.execSQL(updateQuery);
+        database.close();
+    }
+    /**
+     * *********************************************************************************************
+     * // SINCRONIZACAO SQLITE COM MYSQL - DADOS PERCURSOS - END
      * *********************************************************************************************
      */
 
 
     /**
      * ********************************************************************************************
+     * DADOS DE PERCURSO
      * ********************************************************************************************
      * Storing Dados Percurso details in database
      * */
@@ -586,6 +692,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(KEY_DADOS_PERCURSO_UID, uid); // Percurso Id
         values.put(KEY_DADOS_PERCURSO_LATLONG, latlong); // LatLong
         values.put(KEY_DADOS_PERCURSO_DATA, date); // Data
+        values.put(KEY_DADOS_PERCURSO_STATUS, "no"); // Status
 
         // Inserting Row
         long id = db.insert(TABLE_DADOS_PERCURSO, null, values);
