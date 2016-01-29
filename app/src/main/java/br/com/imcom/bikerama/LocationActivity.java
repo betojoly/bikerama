@@ -79,9 +79,12 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location);
+        //setContentView(R.layout.activity_location);
+        setContentView(R.layout.activity_grava_percurso);
 
-        LocationActivity.this.setTitle(TITLE);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(TITLE);
+        getSupportActionBar().setIcon(R.drawable.actionbar_space_between_icon_and_title); // or setLogo()
 
         txtBike = (TextView) findViewById(R.id.textBike);
         txtPausado = (TextView) findViewById(R.id.textViewGravando);
@@ -190,7 +193,7 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
 
             Log.i("LOG", "Latitude | Longitude: " + mLastLocation.getLatitude() + ", " + mLastLocation.getLongitude());
 
-            tvCoordinate.setText(latitude + ", " + longitude);
+            tvCoordinate.setText(latitude + ", \n" + longitude);
 
 
         } else {
@@ -209,6 +212,7 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
         if (mLastLocation != null) {
             double latitude = mLastLocation.getLatitude();
             double longitude = mLastLocation.getLongitude();
+            double distance = 0;
             // Define Data de Hoje
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
             SimpleDateFormat dateFormat_hora = new SimpleDateFormat("HH:mm:ss");
@@ -224,7 +228,7 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
 
             //tvCoordinate.setText(latitude + ", " + longitude);
             // Inserting row in Dados Percurso table
-            db.addDadosPercurso(percurso_id, latlong, data_completa);
+            db.addDadosPercurso(percurso_id, latlong, data_completa, distance);
 
         } else {
 

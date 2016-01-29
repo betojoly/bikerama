@@ -25,7 +25,7 @@ import helper.SQLiteHandler;
 
 public class RegisterComponentesActivity extends AppCompatActivity {
 
-    private static final String TITLE = "Cadastro Componentes Bike";
+    private static final String TITLE = "Cadastro Componentes";
     private static final String TAG = RegisterBikeActivity.class.getSimpleName();
 
     // JSON Node names
@@ -33,6 +33,37 @@ public class RegisterComponentesActivity extends AppCompatActivity {
     private static final String TAG_PID     = "pid";
     private static final String TAG_BIKE    = "bike";
     private static final String TAG_BIKEID  = "bikeid";
+    private static final String KEY_BIKE_ID = "bike_id";
+    private static final String KEY_EMAIL = "email_user";
+    // Controle
+    private static final String KEY_GUIDAO = "guidao";
+    private static final String KEY_MANETE = "manete";
+    private static final String KEY_DIRECAO = "direcao";
+    private static final String KEY_PASSADOR = "passador";
+    private static final String KEY_MESA = "mesa";
+    // Transmissao
+    private static final String KEY_PEDIVELA = "pedivela";
+    private static final String KEY_COROA_MAIOR = "coroa_maior";
+    private static final String KEY_COROA_INTER = "coroa_inter";
+    private static final String KEY_COROA_MENOR = "coroa_menor";
+    private static final String KEY_CORRENTE = "corrente";
+    private static final String KEY_CASSETE = "cassete";
+    private static final String KEY_CENTRAL = "central";
+    private static final String KEY_PEDAL = "pedal";
+    private static final String KEY_CAMBIO_D = "cambio_diant";
+    private static final String KEY_CAMBIO_T = "cambio_tras";
+    // Frente
+    private static final String KEY_GARFO = "garfo";
+    private static final String KEY_ARO_F = "aro_diant";
+    private static final String KEY_CUBO_F = "cubo_diant";
+    private static final String KEY_PNEU_F = "pneu_diant";
+    private static final String KEY_FREIO_F = "freio_diant";
+    // Traseira
+    private static final String KEY_SHOCK = "shock";
+    private static final String KEY_ARO_T = "aro_tras";
+    private static final String KEY_CUBO_T = "cubo_tras";
+    private static final String KEY_PNEU_T = "pneu_tras";
+    private static final String KEY_FREIO_T = "freio_tras";
 
     private BackGroundTask bgt;
 
@@ -47,6 +78,9 @@ public class RegisterComponentesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_componentes);
 
+        getSupportActionBar().setTitle(TITLE);
+        getSupportActionBar().setIcon(R.drawable.actionbar_space_between_icon_and_title); // or setLogo()
+
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
@@ -54,8 +88,6 @@ public class RegisterComponentesActivity extends AppCompatActivity {
         HashMap<String, String> user = db.getUserDetails();
         final String user_name = user.get("name");
         final String user_email = user.get("email");
-
-        RegisterComponentesActivity.this.setTitle(TITLE);
 
         // getting product details from intent
         Intent i = getIntent();
@@ -267,33 +299,33 @@ public class RegisterComponentesActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("guidao", String.valueOf(var_Guidao));
-                params.put("manete", String.valueOf(var_Manete));
-                params.put("direcao", String.valueOf(var_Direcao));
-                params.put("passador", String.valueOf(var_Passador));
-                params.put("mesa", String.valueOf(var_Mesa));
-                params.put("pedivela", String.valueOf(var_Pedivela));
-                params.put("coroa_maior", String.valueOf(var_CoroaMaior));
-                params.put("coroa_inter", String.valueOf(var_CoroaInter));
-                params.put("coroa_menor", String.valueOf(var_CoroaInter));
-                params.put("corrente", String.valueOf(var_CoroaMenor));
-                params.put("cassete", String.valueOf(var_Cassete));
-                params.put("central", String.valueOf(var_Central));
-                params.put("pedal", String.valueOf(var_Pedal));
-                params.put("cambio_diant", String.valueOf(var_CambioD));
-                params.put("cambio_tras", String.valueOf(var_CambioT));
-                params.put("garfo", String.valueOf(var_Garfo));
-                params.put("aro_diant", String.valueOf(var_AroDia));
-                params.put("cubo_diant", String.valueOf(var_CuboDia));
-                params.put("pneu_diant", String.valueOf(var_PneuDia));
-                params.put("freio_diant", String.valueOf(var_FreioDia));
-                params.put("shock", String.valueOf(var_Shock));
-                params.put("aro_tras", String.valueOf(var_AroTra));
-                params.put("cubo_tras", String.valueOf(var_CuboTra));
-                params.put("pneu_tras", String.valueOf(var_PneuTra));
-                params.put("freio_tras", String.valueOf(var_FreioTra));
-                params.put("email_user", String.valueOf(user_email));
-                params.put("bike_id", String.valueOf(bike_id));
+                params.put(KEY_GUIDAO, String.valueOf(var_Guidao));
+                params.put(KEY_MANETE, String.valueOf(var_Manete));
+                params.put(KEY_DIRECAO, String.valueOf(var_Direcao));
+                params.put(KEY_PASSADOR, String.valueOf(var_Passador));
+                params.put(KEY_MESA, String.valueOf(var_Mesa));
+                params.put(KEY_PEDIVELA, String.valueOf(var_Pedivela));
+                params.put(KEY_COROA_MAIOR, String.valueOf(var_CoroaMaior));
+                params.put(KEY_COROA_INTER, String.valueOf(var_CoroaInter));
+                params.put(KEY_COROA_MENOR, String.valueOf(var_CoroaMenor));
+                params.put(KEY_CORRENTE, String.valueOf(var_Corrente));
+                params.put(KEY_CASSETE, String.valueOf(var_Cassete));
+                params.put(KEY_CENTRAL, String.valueOf(var_Central));
+                params.put(KEY_PEDAL, String.valueOf(var_Pedal));
+                params.put(KEY_CAMBIO_D, String.valueOf(var_CambioD));
+                params.put(KEY_CAMBIO_T, String.valueOf(var_CambioT));
+                params.put(KEY_GARFO, String.valueOf(var_Garfo));
+                params.put(KEY_ARO_F, String.valueOf(var_AroDia));
+                params.put(KEY_CUBO_F, String.valueOf(var_CuboDia));
+                params.put(KEY_PNEU_F, String.valueOf(var_PneuDia));
+                params.put(KEY_FREIO_F, String.valueOf(var_FreioDia));
+                params.put(KEY_SHOCK, String.valueOf(var_Shock));
+                params.put(KEY_ARO_T, String.valueOf(var_AroTra));
+                params.put(KEY_CUBO_T, String.valueOf(var_CuboTra));
+                params.put(KEY_PNEU_T, String.valueOf(var_PneuTra));
+                params.put(KEY_FREIO_T, String.valueOf(var_FreioTra));
+                params.put(KEY_EMAIL, String.valueOf(user_email));
+                params.put(KEY_BIKE_ID, String.valueOf(bike_id));
                 return params;
             }
         };

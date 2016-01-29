@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_bg">
+
+            <!-- Register -->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:gravity="top"
+                android:padding="10dip"
+                android:layout_below="@+id/header"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/texto1acessorio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/cadastro_acessorios"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/texto2acessorio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/cadastro_acessorio_explain"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/texto3acessorio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/cadastro_acessorio_explain2"
+                    android:textSize="14dp" />
+
+
+                <!-- Acessorio -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/inputAcessorio"
+                        android:layout_width="fill_parent"
+                        android:layout_height="70px"
+                        android:layout_marginTop="10dip"
+                        android:gravity="center"
+                        android:inputType="textAutoComplete"
+                        android:background="#ffffff"
+                        android:singleLine="true"
+                        android:maxLength="50"
+                        android:layout_below="@+id/texto3acessorio"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Manete de freio -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/inputPreco"
+                        android:layout_width="fill_parent"
+                        android:layout_height="70px"
+                        android:layout_marginTop="10dip"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:background="#ffffff"
+                        android:singleLine="true"
+                        android:maxLength="50"
+                        android:layout_below="@+id/inputAcessorio"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Register Button -->
+                <Button android:id="@+id/btnSubmit"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:background="@drawable/button_blue"
+                    android:text="@string/action_salvar"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <!-- Register Ends -->
+
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -30,8 +30,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SplashActivity">
+
+        <!-- Requerido pelo Google Maps -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDU8O38Byg6qrDSpuLzOJpYAanMdHwmMSo" />
+        <!-- Requerido pelo Google Play Services -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,27 +57,73 @@
             android:name=".LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_login"
-            android:theme="@style/FullscreenTheme" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Register3Activity" />
         <activity android:name=".RegisterBikeActivity" />
-        <activity android:name=".InicialActivity" />
+        <activity
+            android:name=".InicialActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".RegistroPercursoActivity" />
         <activity android:name=".RegisterComponentesActivity" />
-        <!-- Requerido pelo Google Maps -->
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDU8O38Byg6qrDSpuLzOJpYAanMdHwmMSo" />
-        <!-- Requerido pelo Google Play Services -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        <activity
+            android:name=".LocationActivity"
+            android:parentActivityName=".Main2Activity" />
+        <activity
+            android:name=".SavePercursoActivity"
+            android:parentActivityName=".Main2Activity" />
+        <activity
+            android:name=".PercursosActivity"
+            android:parentActivityName=".Main2Activity" />
+        <activity
+            android:name=".HistoricoPercursosActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".Main2Activity" />
+        <activity
+            android:name=".DetalhesPercursoActivity"
+            android:parentActivityName=".HistoricoPercursosActivity" />
+        <activity
+            android:name=".ViewComponentesActivity"
+            android:parentActivityName=".Main2Activity" />
+        <activity
+            android:name=".DetalhesComponentesActivity"
+            android:parentActivityName=".ViewComponentesActivity" />
+        <activity
+            android:name=".ViewAcessoriosActivity"
+            android:parentActivityName=".Main2Activity" />
+        <activity
+            android:name=".FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Teste_Remover_Depois_Activity"
+            android:label="@string/title_activity_teste"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RegisterAcessoriosActivity"
+            android:label="@string/title_activity_register_acessorios" />
+        <activity android:name=".LocationServiceActivity" />
 
-        <activity android:name=".LocationActivity" />
-        <activity android:name=".SavePercursoActivity" />
-        <activity android:name=".PercursosActivity" />
-        <activity android:name=".HistoricoPercursosActivity" />
-        <activity android:name=".DetalhesPercursoActivity" />
-        <activity android:name=".ViewComponentesActivity"></activity>
+        <service
+            android:name=".ForegroundService"
+            android:process=":gps_reading_service" />
+
+        <activity
+            android:name=".GravaPercursoActivity"
+            android:label="@string/title_activity_grava_percurso" />
+        <activity
+            android:name=".ViewRelatoriosActivity"
+            android:label="@string/title_activity_view_relatorios"
+            android:launchMode="singleTop"
+            android:parentActivityName=".Main2Activity" />
+        <activity
+            android:name=".DetalhesRelatorioActivity"
+            android:parentActivityName=".ViewRelatoriosActivity">
+        </activity>
     </application>
 
 </manifest>

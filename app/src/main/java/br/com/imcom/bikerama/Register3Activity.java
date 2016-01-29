@@ -79,6 +79,12 @@ public class Register3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register3);
 
+        getSupportActionBar().setTitle(TITLE);
+        getSupportActionBar().setIcon(R.drawable.actionbar_space_between_icon_and_title); // or setLogo()
+
+        // Permanecer nesta Tela
+        Toast.makeText(getApplicationContext(), "Complete seu Cadastro!", Toast.LENGTH_LONG).show();
+
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
         // Fetching user details from sqlite
@@ -147,6 +153,9 @@ public class Register3Activity extends AppCompatActivity {
                     if (!error) {
                         // User successfully stored in MySQL
                         Toast.makeText(getApplicationContext(), "Dados salvos com sucesso!", Toast.LENGTH_LONG).show();
+
+                        // Grava status de cadastro completo no SQLite
+                        db.addCadastro("1");
 
                         // Launch Cadastro Bike Activity
                         Intent intent = new Intent(

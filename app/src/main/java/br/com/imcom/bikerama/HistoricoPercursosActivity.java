@@ -1,17 +1,29 @@
 package br.com.imcom.bikerama;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +34,10 @@ import helper.SessionManager;
 public class HistoricoPercursosActivity extends AppCompatActivity {
 
     private static final String TITLE = "Histórico Percursos";
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = HistoricoPercursosActivity.class.getSimpleName();
 
-    private static final String TAG_PERCURSO_ID = "percursoid";
+    private static final String TAG_PERCURSO_ID  = "percursoid";
+    private static final String TAG_PERCURSO_DATA  = "date";
     // Percurso Table Columns names
     private static final String KEY_PERCURSO_ID = "id";
     private static final String KEY_PERCURSO_UID = "uid";
@@ -41,12 +54,15 @@ public class HistoricoPercursosActivity extends AppCompatActivity {
     private SQLiteHandler db;
     private SessionManager session;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_historico_percursos);
+        setContentView(R.layout.historico_percursos);
 
-        HistoricoPercursosActivity.this.setTitle(TITLE);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(TITLE);
+        getSupportActionBar().setIcon(R.drawable.actionbar_space_between_icon_and_title); // or setLogo()
 
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
@@ -57,6 +73,26 @@ public class HistoricoPercursosActivity extends AppCompatActivity {
         if (!session.isLoggedIn()) {
             logoutUser();
         }
+
+        // Fetching bikedetails from sqlite
+        HashMap<String, String> bike = db.getBikeDetails();
+
+        String bike_name = bike.get("name");
+        final String bike_id = bike.get("uid");
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                final String finalBike_id = bike_id;
+
+                Toast.makeText(HistoricoPercursosActivity.this,
+                        "Iniciar Percurso!", Toast.LENGTH_LONG).show();
+                gravarPercurso(finalBike_id);
+            }
+        });
 
         // Get ListView object from xml
         listViewPercursos = (ListView) findViewById(R.id.listViewPercursos);
@@ -107,7 +143,8 @@ public class HistoricoPercursosActivity extends AppCompatActivity {
                 Log.d(LOG_TAG, "Percurso ID (Selecionado): " + pid.toString());
 
                 // Starting new intent
-                Intent in = new Intent(getApplicationContext(), DetalhesPercursoActivity.class);
+                Intent in = new Intent(getApplicationContext(),
+                        DetalhesPercursoActivity.class);
                 // sending pid to next activity
                 in.putExtra(KEY_PERCURSO_ID, pid);
                 // starting new activity and expecting some response back
@@ -115,6 +152,47 @@ public class HistoricoPercursosActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    /**
+     * Launching new activity
+     */
+    public void gravarPercurso(String bike_id) {
+
+        // Define Data de Hoje
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+        SimpleDateFormat dateFormat_hora = new SimpleDateFormat("HH:mm:ss");
+        Date data = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data);
+        Date data_atual = cal.getTime();
+        String data_completa = dateFormat.format(data_atual);
+        String hora_atual = dateFormat_hora.format(data_atual);
+        String data_SQL = dateFormat.toString();
+
+        Log.i("data_SQL", data_SQL);
+        Log.i("data_completa", data_completa);
+        Log.i("data_atual", data_atual.toString());
+        Log.i("hora_atual", hora_atual);
+
+        // Inserting row in users table
+        db.addPercurso(bike_id, data_completa);
+
+        // Recupera o ultimo ID se gravou o novo Percurso from sqlite
+        HashMap<String, String> percurso = db.getPercursoLast();
+        final String percurso_id = percurso.get("id");
+
+        // Launching the RegistroPercurso activity
+        //Intent intent = new Intent(Main2Activity.this, LocationActivity.class);
+        Intent intent = new Intent(HistoricoPercursosActivity.this, GravaPercursoActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        // sending id to next activity
+        intent.putExtra(TAG_PERCURSO_ID, percurso_id);
+        intent.putExtra(TAG_PERCURSO_DATA, data_completa);
+        startActivity(intent);
+        //finish();
+    }
+
 
     /**
      * Logging out the user. Will set isLoggedIn flag to false in shared

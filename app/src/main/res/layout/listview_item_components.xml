@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="@color/green_overlay">
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+
+
+        <!-- Row 1 with single column -->
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="left">
+
+            <!-- Product id (pid) - will be HIDDEN - used to pass to other activity -->
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/nomeComponente"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:textColor="@color/black_overlay2"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <!-- Row 2 with 2 columns -->
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/labelmodeloComponente"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:layout_below="@id/nomeComponente"
+                android:text="@string/componentes_marca"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:textColor="@color/black_overlay"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/labeldateComponente"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:layout_below="@id/nomeComponente"
+                android:text="@string/componentes_data"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:textColor="@color/black_overlay"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <!-- Row 3 with 2 columns -->
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/valorComponente"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:layout_below="@id/labelmodeloComponente"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:textColor="@color/azul_escuro"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/dateComponente"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:layout_below="@id/labelmodeloComponente"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:textColor="@color/azul_escuro"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

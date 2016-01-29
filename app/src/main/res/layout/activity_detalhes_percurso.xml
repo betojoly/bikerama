@@ -1,49 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_overlay">
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true">
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white">
-
-            <!--  Header  Starts-->
-            <LinearLayout
-                android:id="@+id/header"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/header_gradient"
-                android:paddingTop="5dip"
-                android:paddingBottom="5dip">
-                <!-- Logo Start-->
-                <ImageView android:src="@drawable/bikerama_ldpi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dip"/>
-                <!-- Logo Ends -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_marginLeft="20dip"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/percurso_detalhes"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
-            </LinearLayout>
-            <!--  Header Ends -->
+            android:layout_height="match_parent"
+            android:background="@color/green_overlay">
 
             <!-- ListView -->
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
@@ -52,38 +27,344 @@
                 android:orientation="vertical" >
 
                 <!-- Name Label -->
-                <TextView  android:id="@+id/inputName"
+                <TextView  android:id="@+id/txtNome"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dip"
+                    android:paddingLeft="5dip"
                     android:paddingRight="10dip"
                     android:paddingTop="10dip"
-                    android:textSize="18dip"
+                    android:paddingBottom="10dp"
+                    android:textSize="20dip"
+                    android:textColor="@color/azul_escuro"
                     android:textStyle="bold"/>
 
+                <!-- ESPACADOR -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/azul_escuro">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="1dp">
+                    </TableRow>
+                </TableLayout>
+
+                <!-- DATA -->
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal">
 
                     <TableRow
-                        android:layout_width="fill_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="fill_parent"
-                        android:layout_margin="10dp">
+                        android:layout_margin="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingRight="5dp"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="@string/percurso_data"
-                            android:id="@+id/txtData" />
+                            android:id="@+id/txtLabelData" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- DATA -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold"
+                            android:id="@+id/txtData" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- ESPACADOR -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/azul_escuro">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="1dp">
+                    </TableRow>
+                </TableLayout>
+
+                <!-- DISTANCIA -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="10dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/percurso_distancia"
+                            android:id="@+id/txtLabelDistancia" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- DISTANCIA -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold"
+                            android:id="@+id/txtDistancia" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- ESPACADOR -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/azul_escuro">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="1dp">
+                    </TableRow>
+                </TableLayout>
+
+                <!-- TIPO -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="5dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="@string/percurso_tipo"
+                            android:id="@+id/txtLabelTipo" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- TIPO -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold"
                             android:id="@+id/txtTipo" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- ESPACADOR -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/azul_escuro">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="1dp">
+                    </TableRow>
+                </TableLayout>
+
+                <!-- NIVEL -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="5dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/percurso_nivel"
+                            android:id="@+id/txtLabelNivel" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- NIVEL -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold"
+                            android:id="@+id/txtNivel" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- ESPACADOR -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/azul_escuro">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="1dp">
+                    </TableRow>
+                </TableLayout>
+
+                <!-- SINCRONIZADO -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="5dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/percurso_sincro"
+                            android:id="@+id/txtLabelSincro" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- SINCRONIZADO -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold"
+                            android:id="@+id/txtSincro" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- ESPACADOR -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/azul_escuro">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="1dp">
+                    </TableRow>
+                </TableLayout>
+
+                <!-- DESCRICAO -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="10dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/percurso_descricao"
+                            android:id="@+id/txtLabelDescricao" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- DESCRICAO -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold"
+                            android:id="@+id/txtDescricao" />
                     </TableRow>
                 </TableLayout>
 

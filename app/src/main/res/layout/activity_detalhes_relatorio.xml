@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_overlay">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@color/green_overlay">
+
+            <!-- ListView -->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:gravity="top"
+                android:layout_below="@+id/header"
+                android:orientation="vertical" >
+
+                <!-- Name Label -->
+                <TextView  android:id="@+id/txtConjunto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="10dip"
+                    android:paddingTop="10dip"
+                    android:paddingBottom="10dp"
+                    android:textSize="20dip"
+                    android:textColor="@color/azul_escuro"
+                    android:textStyle="bold"/>
+
+                <!-- ESPACADOR -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/azul_escuro">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="1dp">
+                    </TableRow>
+                </TableLayout>
+
+                <!-- DATA -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="5dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/relatorio_data"
+                            android:id="@+id/txtLabelData" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- DATA -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold"
+                            android:id="@+id/txtData" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- ESPACADOR -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/azul_escuro">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="1dp">
+                    </TableRow>
+                </TableLayout>
+
+                <!-- SINCRONIZADO -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="5dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/relatorio_status"
+                            android:id="@+id/txtLabelSincro" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- SINCRONIZADO -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold"
+                            android:id="@+id/txtSincro" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- ESPACADOR -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/azul_escuro">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="1dp">
+                    </TableRow>
+                </TableLayout>
+
+                <!-- DESCRICAO -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingRight="10dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/relatorio_verificacao"
+                            android:id="@+id/txtLabelDescricao" />
+                    </TableRow>
+                </TableLayout>
+
+                <!-- DESCRICAO -->
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold"
+                            android:id="@+id/txtVerificacao" />
+                    </TableRow>
+                </TableLayout>
+
+
+            </LinearLayout>
+            <!-- ListView Ends -->
+
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -32,7 +32,8 @@ import helper.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String TAG = RegisterActivity.class.getSimpleName();
+    private static final String TITLE = "Login";
+    private static final String TAG = LoginActivity.class.getSimpleName();
     private Button btnLogin;
     private TextView registerScreen;
     private EditText inputEmail;
@@ -45,6 +46,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //getSupportActionBar().setTitle(TITLE);
+        //getSupportActionBar().setIcon(R.drawable.actionbar_space_between_icon_and_title); // or setLogo()
 
         registerScreen = (TextView) findViewById(R.id.link_to_register);
         inputEmail = (EditText) findViewById(R.id.email);
@@ -64,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
             startActivity(intent);
             finish();
         }
@@ -144,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,
-                                MainActivity.class);
+                                Main2Activity.class);
                         startActivity(intent);
                         finish();
                     } else {

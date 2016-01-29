@@ -58,6 +58,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                    <TextView
+                        android:id="@+id/textEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/azul_escuro"
+                        android:text="@string/action_email_register"
+                        android:gravity="left"
+                        android:textSize="12dp"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <!--  Email Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
                     <EditText
                         android:id="@+id/email"
                         android:layout_width="fill_parent"
@@ -65,10 +80,26 @@
                         android:layout_height="70px"
                         android:gravity="center"
                         android:inputType="textEmailAddress"
-                        android:hint="@string/login_email"
+                        android:textColor="@color/azul_escuro"
                         android:layout_marginBottom="20dip"
-                        android:background="#ffffff"
-                        android:singleLine="true"/>
+                        android:background="@color/white"
+                        android:singleLine="true"
+                        android:layout_below="@+id/textEmail"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <!--  Password Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textSenha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/azul_escuro"
+                        android:text="@string/action_senha_register"
+                        android:gravity="left"
+                        android:textSize="12dp"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <!--  Password Label -->
@@ -83,11 +114,11 @@
                         android:layout_height="70px"
                         android:gravity="center"
                         android:inputType="textPassword"
-                        android:hint="@string/login_password"
+                        android:textColor="@color/azul_escuro"
                         android:imeActionId="@+id/login"
                         android:imeOptions="actionUnspecified"
                         android:layout_marginBottom="20dip"
-                        android:background="#ffffff"
+                        android:background="@color/white"
                         android:singleLine="true"/>
                 </android.support.design.widget.TextInputLayout>
 
@@ -95,7 +126,7 @@
                 <Button android:id="@+id/btnLogin" style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:background="@drawable/button_blue"

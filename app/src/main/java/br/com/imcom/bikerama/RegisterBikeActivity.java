@@ -70,6 +70,11 @@ public class RegisterBikeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_bike);
 
+        getSupportActionBar().setTitle(TITLE);
+        getSupportActionBar().setIcon(R.drawable.actionbar_space_between_icon_and_title); // or setLogo()
+
+        Toast.makeText(getApplicationContext(), "Cadastre sua Bike!", Toast.LENGTH_LONG).show();
+
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
         // Fetching user details from sqlite
@@ -80,8 +85,6 @@ public class RegisterBikeActivity extends AppCompatActivity {
         /////////////////////////////////////////////////////////////////////////
         //db.deleteBikes(); // ***USAR SOMENTE DURANTE HOMOLOGAÇAO - DEPOIS REMOVER
         /////////////////////////////////////////////////////////////////////////
-
-        RegisterBikeActivity.this.setTitle(TITLE);
 
         final EditText nomeBike = (EditText) findViewById(R.id.inputNome);
         nomeBike.setHint("Nome da Bike");

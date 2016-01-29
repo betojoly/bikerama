@@ -16,6 +16,15 @@ public class AppConfig {
 
     // Server Consulta Bike url
     public static String URL_CONSULTA_BIKE = "http://app.bikerama.com.br/API/consulta_bike.php";
+    public static String URL_CONSULTA_BIKE_ALERTA = "http://app.bikerama.com.br/API/consulta_bike_alerta.php";
+
+    // Server Update Kilometragem Bike url
+    public static String URL_UPDATE_KILO_BIKE = "http://app.bikerama.com.br/API/update_bike.php";
+
+    // Server Consulta Componentes Bike url
+    public static String URL_CONSULTA_COMPONENTES = "http://app.bikerama.com.br/API/consulta_componentes.php";
+    public static String URL_DETALHE_COMPONENTES = "http://app.bikerama.com.br/API/detalhe_componentes.php";
+    public static String URL_UPDATE_COMP_BIKE = "http://app.bikerama.com.br/API/update_componentes.php";
 
     // Server Exporta Dados Percurso
     public static String URL_EXPORTA_PERCURSO = "http://app.bikerama.com.br/API/register_percurso.php";
@@ -33,4 +42,8 @@ public class AppConfig {
     public static String MAP_API_URL_PERFIL = "http://app.bikerama.com.br/API/get_perfis.php";
     public static String URL_SAVE_BIKE      = "http://app.bikerama.com.br/API/register_bike.php";
     public static String URL_SAVE_COMP_BIKE = "http://app.bikerama.com.br/API/register_componentes.php";
+
+    // Cadastro de Acessorios
+    public static String URL_SAVE_ACESSORIO_BIKE = "http://app.bikerama.com.br/API/register_acessorios.php";
+    public static String URL_CONSULTA_ACESSORIOS = "http://app.bikerama.com.br/API/consulta_acessorios.php";
 }

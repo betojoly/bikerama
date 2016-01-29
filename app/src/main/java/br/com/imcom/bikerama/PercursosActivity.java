@@ -4,10 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -44,6 +47,7 @@ public class PercursosActivity extends AppCompatActivity {
     private static final String TAG_BIKE = "bike";
     private static final String TAG_BIKEID = "bikeid";
     private static final String TAG_PERCURSO_ID = "percursoid";
+    private static final String TAG_PERCURSO_DATA  = "date";
     // Percurso Table Columns names
     private static final String KEY_PERCURSO_ID = "id";
     private static final String KEY_PERCURSO_UID = "uid";
@@ -91,7 +95,9 @@ public class PercursosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_percursos);
 
-        PercursosActivity.this.setTitle(TITLE);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(TITLE);
+        getSupportActionBar().setIcon(R.drawable.actionbar_space_between_icon_and_title); // or setLogo()
 
         // Get ListView object from xml
         listViewPercursos = (ListView) findViewById(R.id.listViewPercursos);
@@ -117,6 +123,20 @@ public class PercursosActivity extends AppCompatActivity {
 
         String bike_name = bike.get("name");
         final String bike_id = bike.get("uid");
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                final String finalBike_id = bike_id;
+
+                Toast.makeText(PercursosActivity.this,
+                        "Iniciar Percurso!", Toast.LENGTH_LONG).show();
+                gravarPercurso(finalBike_id);
+            }
+        });
 
         // Displaying the user details on the screen
         /////txtBike.setText(bike_name);
@@ -164,17 +184,49 @@ public class PercursosActivity extends AppCompatActivity {
             }
         }
 
-        // Botão Continuar Registro
-        /*btnNewPercurso.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                gravarPercurso(bike_id);
-            }
-        });*/
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+
+    /**
+     * Launching new activity
+     */
+    public void gravarPercurso(String bike_id) {
+
+        // Define Data de Hoje
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+        SimpleDateFormat dateFormat_hora = new SimpleDateFormat("HH:mm:ss");
+        Date data = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data);
+        Date data_atual = cal.getTime();
+        String data_completa = dateFormat.format(data_atual);
+        String hora_atual = dateFormat_hora.format(data_atual);
+        String data_SQL = dateFormat.toString();
+
+        Log.i("data_SQL", data_SQL);
+        Log.i("data_completa", data_completa);
+        Log.i("data_atual", data_atual.toString());
+        Log.i("hora_atual", hora_atual);
+
+        // Inserting row in users table
+        db.addPercurso(bike_id, data_completa);
+
+        // Recupera o ultimo ID se gravou o novo Percurso from sqlite
+        HashMap<String, String> percurso = db.getPercursoLast();
+        final String percurso_id = percurso.get("id");
+
+        // Launching the RegistroPercurso activity
+        //Intent intent = new Intent(Main2Activity.this, LocationActivity.class);
+        Intent intent = new Intent(PercursosActivity.this, GravaPercursoActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        // sending id to next activity
+        intent.putExtra(TAG_PERCURSO_ID, percurso_id);
+        intent.putExtra(TAG_PERCURSO_DATA, data_completa);
+        startActivity(intent);
+        //finish();
     }
 
 
@@ -279,6 +331,7 @@ public class PercursosActivity extends AppCompatActivity {
         List<Map<String, String>> data = new ArrayList<Map<String, String>>();
         for (Percurso item : db.getAllPercursos()) {
             Map<String, String> datum = new HashMap<String, String>(2);
+            datum.put(KEY_PERCURSO_ID, String.valueOf(item.getId()));
             datum.put(KEY_PERCURSO_NOME, item.getNome());
             datum.put(KEY_PERCURSO_DATA, item.getDate().toString());
             data.add(datum);
@@ -286,51 +339,34 @@ public class PercursosActivity extends AppCompatActivity {
 
         SimpleAdapter adapter = new SimpleAdapter(this, data,
                 R.layout.listview_item_percursos,
-                new String[] {KEY_PERCURSO_NOME, KEY_PERCURSO_DATA},
-                new int[] {R.id.nome,
-                        R.id.date});
+                new String[] {KEY_PERCURSO_ID, KEY_PERCURSO_NOME, KEY_PERCURSO_DATA},
+                new int[] {R.id.id,
+                           R.id.nome,
+                           R.id.date});
 
         listViewPercursos.setAdapter(adapter);
-    }
 
 
-    /**
-     * Continua o Registro e Sai da Tela de Boas Vindas
-     *
-     * @param bike_id
-     */
-    public void gravarPercurso(String bike_id) {
+        // on seleting single
+        // launching Screen
+        listViewPercursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        // Define Data de Hoje
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
-        SimpleDateFormat dateFormat_hora = new SimpleDateFormat("HH:mm:ss");
-        Date data = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(data);
-        Date data_atual = cal.getTime();
-        String data_completa = dateFormat.format(data_atual);
-        String hora_atual = dateFormat_hora.format(data_atual);
-        String data_SQL = dateFormat.toString();
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // getting values from selected ListItem
+                String pid = ((TextView) view.findViewById(R.id.id)).getText().toString();
+                Log.d(LOG_TAG, "Percurso ID (Selecionado): " + pid.toString());
 
-        Log.i("data_SQL", data_SQL);
-        Log.i("data_completa", data_completa);
-        Log.i("data_atual", data_atual.toString());
-        Log.i("hora_atual", hora_atual);
-
-        // Inserting row in users table
-        db.addPercurso(bike_id, data_completa);
-
-        // Recupera o ultimo ID se gravou o novo Percurso from sqlite
-        HashMap<String, String> percurso = db.getPercursoLast();
-        final String percurso_id = percurso.get("id");
-
-        // Launching the RegistroPercurso activity
-        Intent intent = new Intent(PercursosActivity.this,
-                LocationActivity.class);
-        // sending id to next activity
-        intent.putExtra(TAG_PERCURSO_ID, percurso_id);
-        startActivity(intent);
-        finish();
+                // Starting new intent
+                Intent in = new Intent(getApplicationContext(),
+                        DetalhesPercursoActivity.class);
+                // sending pid to next activity
+                in.putExtra(KEY_PERCURSO_ID, pid);
+                // starting new activity and expecting some response back
+                startActivityForResult(in, 100);
+            }
+        });
     }
 
     @Override

@@ -13,8 +13,9 @@
 
 
     <!-- Strings Activity -->
-    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_register">Registro</string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_historico">Histórico Percursos</string>
 
 
     <!-- Strings Login -->
@@ -70,6 +71,18 @@
     <string name="cadastro_componentes_bike_transmissao">Transmissão:</string>
     <string name="cadastro_componentes_bike_frente">Frente:</string>
     <string name="cadastro_componentes_bike_traseira">Traseira:</string>
+    <string name="componentes">Componentes</string>
+    <string name="detalhes_componentes">Componente</string>
+    <string name="editar_componentes">Editar Componente</string>
+    <string name="componentes_marca">Marca/Modelo</string>
+    <string name="componentes_data">Data de Cadastro:</string>
+    <string name="componentes_data_nova">Nova Data de Cadastro:</string>
+
+
+    <!-- Strings Registro Acessórios Bike -->
+    <string name="cadastro_acessorios">Cadastre seus Acessórios</string>
+    <string name="cadastro_acessorio_explain">*Cadastre o nome e o preço que pagou no seu acessório.</string>
+    <string name="cadastro_acessorio_explain2">**Podem ser cadastrados capacetes, luvas, bottles, etc.</string>
 
 
     <!-- Strings TEla Inicial -->
@@ -103,10 +116,28 @@
     <string name="percurso_nivel_moderado">Moderado</string>
     <string name="percurso_nivel_pesado">Pesado</string>
     <string name="percurso_data">Data</string>
+    <string name="percurso_distancia">Distância Percorrida</string>
+    <string name="percurso_distancia_0">0 Km</string>
+    <string name="percurso_velocidade">Kilometragem</string>
+    <string name="percurso_velocidade_0">0.0 Km</string>
+    <string name="percurso_sincro">Sincronizado</string>
 
-    <string name="btn_percurso_concluir">Concluir e Salvar Percurso</string>
-    <string name="btn_start_location_updates">Continuar gravando Percurso</string>
-    <string name="btn_stop_location_updates">Pausar Percurso</string>
+
+    <!-- Strings Relatorios -->
+    <string name="relatorio_data">Data</string>
+    <string name="relatorio_grupo">Grupo Componentes</string>
+    <string name="relatorio_status">Aviso Visualizado</string>
+    <string name="relatorio_verificacao">Aviso de Verificação</string>
+
+
+    <!-- Strings Anuncios -->
+    <string name="percurso_AnuncioGravaPercurso">ANUNCIE AQUI!</string>
+
+
+    <!-- Strings Botoes Percurso -->
+    <string name="btn_percurso_concluir">Concluir</string>
+    <string name="btn_start_location_updates">Continuar</string>
+    <string name="btn_stop_location_updates">Pausar</string>
     <string name="btn_salvar_percurso">Salvar</string>
     <string name="btn_cancelar_percurso">Cancelar</string>
 
@@ -116,6 +147,29 @@
     <string name="error_invalid_password">Senha é muito curta</string>
     <string name="error_incorrect_password">Senha incorreta</string>
     <string name="error_field_required">Este campo é obrigatório</string>
+
+
+    <!-- Strings Menu -->
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_save">Save</string>
+    <string name="action_label">Add Label</string>
+    <string name="action_help">Ajuda</string>
+    <string name="action_novo_percurso">Novo Percurso</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_teste">TesteActivity</string>
+    <string name="title_activity_register_acessorios">RegisterAcessoriosActivity</string>
+    <string name="title_activity_main_">Main_Activity</string>
+    <string name="title_activity_grava_percurso">GravaPercursoActivity</string>
+    <string name="title_activity_view_relatorios">ViewRelatoriosActivity</string>
 
 
 </resources>

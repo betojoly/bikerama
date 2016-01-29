@@ -18,6 +18,7 @@ import helper.SessionManager;
 
 public class RegistroPercursoActivity extends AppCompatActivity {
 
+    private static final String TITLE = "Registro de Percurso";
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_BIKE    = "bike";
@@ -38,6 +39,10 @@ public class RegistroPercursoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_percurso);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(TITLE);
+        getSupportActionBar().setIcon(R.drawable.actionbar_space_between_icon_and_title); // or setLogo()
 
         txtBike = (TextView) findViewById(R.id.textBike);
         btnNewPercurso = (Button) findViewById(R.id.btnIniciarPercurso);
@@ -127,8 +132,7 @@ public class RegistroPercursoActivity extends AppCompatActivity {
         final String percurso_id = percurso.get("id");
 
         // Launching the RegistroPercurso activity
-        Intent intent = new Intent(RegistroPercursoActivity.this,
-                LocationActivity.class);
+        Intent intent = new Intent(RegistroPercursoActivity.this, LocationActivity.class);
         // sending id to next activity
         intent.putExtra(TAG_PERCURSO_ID, percurso_id);
         intent.putExtra(TAG_PERCURSO_DATA, data_completa);

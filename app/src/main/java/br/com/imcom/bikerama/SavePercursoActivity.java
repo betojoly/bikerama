@@ -81,7 +81,9 @@ public class SavePercursoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_percurso);
 
-        SavePercursoActivity.this.setTitle(TITLE);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(TITLE);
+        getSupportActionBar().setIcon(R.drawable.actionbar_space_between_icon_and_title); // or setLogo()
 
         // Detecta conexao instancia
         detectaConexao = new DetectaConexao(getApplicationContext());
@@ -111,7 +113,7 @@ public class SavePercursoActivity extends AppCompatActivity {
             if(userListDados.size()!=0){
                 if(db.dbSyncCountDadosPercurso() != 0){
                     String paramsDados = db.composeJSONfromSQLiteDadosPercurso();
-                    //Log.d("Create Response GSON", paramsDados);
+                    Log.d("Create Response GSON", paramsDados);
                     new syncSQLiteMySQLDBDadosPercurso().execute(paramsDados);
                 }else{
                     //Toast.makeText(getApplicationContext(), "SQLite and Remote MySQL DBs are in Sync!", Toast.LENGTH_LONG).show();
@@ -245,6 +247,11 @@ public class SavePercursoActivity extends AppCompatActivity {
                     String var_Id = percurso_id.toString().trim();
                     String var_Status = "no";
 
+                    // valida se foram preenchidos os campos
+                    if (var_Nome == null || var_Nome.trim().isEmpty()) {
+                        var_Nome = data_completa;
+                    }
+
                     // Inserting row in users table
                     db.updatePercurso(var_Nome, var_Tipo, var_Nivel, var_Descricao, var_Status, var_Id); //String nome, String tipo, String nivel, String descricao, String id
 
@@ -287,6 +294,7 @@ public class SavePercursoActivity extends AppCompatActivity {
             // Building Parameters
             Map<String, String> paramsDados = new HashMap<>();
             paramsDados.put("dados_JSON", dadosGsonD);
+            Log.d("dados_JSON", dadosGsonD.toString());
 
             // Check for success tag
             int success = 0; //initialize to zero
@@ -358,7 +366,7 @@ public class SavePercursoActivity extends AppCompatActivity {
     private void mostraAlerta() {
         AlertDialog.Builder informa = new AlertDialog.Builder(SavePercursoActivity.this);
         informa.setTitle("Sem conexão com a internet.");
-        informa.setNeutralButton("Voltar", null).show();
+        informa.setNeutralButton("Fechar", null).show();
     }
 
     /**

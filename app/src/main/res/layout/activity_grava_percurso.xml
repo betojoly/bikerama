@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="br.com.imcom.bikerama.GravaPercursoActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_bg">
+
+                <!-- Footer Start -->
+                <LinearLayout
+                    android:id="@+id/topo"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="180dip"
+                    android:background="@color/black_overlay"
+                    android:layout_alignParentTop="true">
+
+                    <TextView
+                        android:id="@+id/textChrono"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/percurso_tempo_transcorrido"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginBottom="0dp"
+                        android:textSize="15sp" />
+
+                    <Chronometer
+                        android:id="@+id/chronometer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_below="@+id/textChrono"
+                        android:layout_marginTop="0dp"
+                        android:format="%s"
+                        android:text="Chronometer"
+                        android:textSize="55sp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+                <!-- Footer Ends -->
+
+                <!-- Botoes -->
+                <LinearLayout
+                    android:id="@+id/botoes"
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dip"
+                    android:background="@color/white"
+                    android:layout_below="@+id/topo">
+
+                    <Button android:id="@+id/btnPararPercurso"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:background="@drawable/button_logout"
+                        android:text="@string/btn_stop_location_updates"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
+
+                    <Button android:id="@+id/btnConcluirPercurso"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:background="@drawable/button_black"
+                        android:text="@string/btn_percurso_concluir"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <!-- Botoes Ends -->
+
+                <!-- Gravando -->
+                <LinearLayout
+                    android:id="@+id/textoGravando"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dip"
+                    android:background="@drawable/login_bg"
+                    android:layout_below="@+id/botoes">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/percurso_gravando"
+                        android:id="@+id/textViewGravando"
+                        android:layout_margin="16dp"
+                        android:textSize="25dp"
+                        android:textColor="@color/azul_escuro"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+                </LinearLayout>
+                <!-- Gravando Ends -->
+
+                <!-- Registration Form -->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/textoGravando">
+
+                    <TableLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:shrinkColumns="*"
+                        android:stretchColumns="*">
+
+                        <!-- Row 1 with 2 columns - BIKE / LOCALIZACAO -->
+                        <TableRow
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bike_minha_bike"
+                                android:layout_gravity="center"
+                                android:paddingRight="5dp"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/percurso_localizacao"
+                                android:gravity="center"
+                                android:paddingLeft="5dp"
+                                android:textSize="15dp" />
+                        </TableRow>
+
+                        <!-- Row 2 with 2 columns - BIKE / LOCALIZACAO (Results) -->
+                        <TableRow
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent">
+
+                            <TextView
+                                android:id="@+id/textBike"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="5dp"
+                                android:textSize="16dp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/tv_coordinate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="5dp"
+                                android:text="Coordenadas"
+                                android:textSize="16dp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+                        </TableRow>
+
+                        <!-- Row 3 with 2 columns - DISTANCIA / VELOCIDADE -->
+                        <TableRow
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/percurso_distancia"
+                                android:layout_gravity="center"
+                                android:paddingRight="5dp"
+                                android:paddingTop="20dp"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/percurso_velocidade"
+                                android:gravity="center"
+                                android:paddingLeft="5dp"
+                                android:paddingTop="20dp"
+                                android:textSize="15dp" />
+                        </TableRow>
+
+                        <!-- Row 4 with 2 columns - DISTANCIA / VELOCIDADE (Results) -->
+                        <TableRow
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent">
+
+                            <TextView
+                                android:id="@+id/textDistancia"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="5dp"
+                                android:textColor="@color/white"
+                                android:text="@string/percurso_distancia_0"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:textSize="22dp"/>
+
+                            <TextView
+                                android:id="@+id/textVelocidade"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="5dp"
+                                android:textIsSelectable="false"
+                                android:textColor="@color/white"
+                                android:text="@string/percurso_velocidade_0"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:textSize="22dp"/>
+                        </TableRow>
+
+                    </TableLayout>
+
+                </LinearLayout>
+                <!-- Registration Form Ends -->
+
+                <!-- Anúncio -->
+                <LinearLayout
+                    android:id="@+id/footer"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:background="@drawable/anuncio_bg"
+                    android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:id="@+id/textViewAnuncioGravaPercurso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/percurso_AnuncioGravaPercurso"
+                        android:layout_margin="16dp"
+                        android:textSize="25dp"
+                        android:textColor="@color/azul_escuro"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+                </LinearLayout>
+                <!-- Anúncio Ends -->
+
+            </RelativeLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <!--<include layout="@layout/content_grava_percurso" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_dialog_email" />-->
+
+</android.support.design.widget.CoordinatorLayout>

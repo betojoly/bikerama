@@ -28,6 +28,7 @@ import helper.SessionManager;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private static final String TITLE = "Registro";
     //private Spinner spinner1;
     private static final String TAG = RegisterActivity.class.getSimpleName();
     private TextView loginScreen;
@@ -43,6 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        getSupportActionBar().setTitle(TITLE);
+        getSupportActionBar().setIcon(R.drawable.actionbar_space_between_icon_and_title); // or setLogo()
 
         loginScreen = (TextView) findViewById(R.id.link_to_login);
         inputFullName = (EditText) findViewById(R.id.inputName);
